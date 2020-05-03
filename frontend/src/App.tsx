@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Provider } from "react-redux";
+import { configureStore } from "./store/store";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Routes } from "./routes";
 
-function App() {
+import "./App.css";
+
+import "materialize-css";
+import { AppState } from "./store/model";
+import { Navbar } from "./components/navbar/navbar";
+
+const App = ({}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={configureStore()}>
+      <Router>
+        <Navbar />
+        <Routes />
+      </Router>
+    </Provider>
   );
-}
+};
 
 export default App;
+// export const App = connect(mapStateToProps)(AppComponent);
